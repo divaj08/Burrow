@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Burrow — Find your fit. Build your plan.</title>
+  <meta name="description" content="Burrow streamlines college research and application strategy with school-specific priorities, checklists, and a sample essay library." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --text:#e8ecff;
+      --muted:#b7c0ffcc;
+      --brand:#44ffb6;
+      --brand2:#7aa6ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:26px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(122,166,255,.30), transparent 60%),
+        radial-gradient(1000px 700px at 90% 10%, rgba(68,255,182,.22), transparent 55%),
+        linear-gradient(180deg, #070a14, var(--bg));
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,20,.55);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:16px 18px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:14px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .logo{
+      width:38px;height:38px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(68,255,182,.95), rgba(122,166,255,.95));
+      box-shadow: var(--shadow);
+      display:grid; place-items:center;
+      color:#04101a; font-weight:900;
+    }
+    .links{display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:650;
+    }
+    .pill.active{
+      background: rgba(68,255,182,.12);
+      border-color: rgba(68,255,182,.30);
+      color: var(--text);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+      padding:22px 0 10px;
+    }
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardPad{padding:20px}
+    h1{margin:0 0 8px; font-size:42px; line-height:1.06}
+    @media (max-width:520px){ h1{font-size:34px} }
+    .sub{color:var(--muted); font-size:16px; line-height:1.5; margin:0 0 16px}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .btn{
+      border:none; cursor:pointer;
+      padding:12px 14px;
+      border-radius: 14px;
+      font-weight:800;
+      color:#06111a;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: var(--shadow);
+    }
+    .btn2{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:750;
+      cursor:pointer;
+    }
+    .mini{font-size:13px; color:var(--muted); margin-top:10px}
+
+    main{padding-bottom:50px}
+    .sectionTitle{margin:18px 0 10px; font-size:18px; color:var(--muted); font-weight:800}
+
+    .funBox{
+      position:relative;
+      height:100%;
+      padding:20px;
+      background:
+        radial-gradient(700px 300px at 10% 10%, rgba(68,255,182,.18), transparent 60%),
+        radial-gradient(700px 300px at 90% 40%, rgba(122,166,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(17,26,51,.75), rgba(15,23,48,.55));
+    }
+    .mascot{display:flex; align-items:center; gap:14px; margin-bottom:10px}
+    .owl{
+      width:54px;height:54px;border-radius:20px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      display:grid; place-items:center;
+      font-size:26px;
+    }
+    .badgeRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .badge{
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(68,255,182,.10);
+      border:1px solid rgba(68,255,182,.25);
+      color: var(--text);
+      font-weight:700;
+      font-size:13px;
+    }
+
+    /* Layout helpers */
+    .grid{display:grid; grid-template-columns: 1fr; gap:12px}
+    .controls{
+      display:grid;
+      grid-template-columns: 1.2fr .6fr .6fr .6fr;
+      gap:10px;
+    }
+    @media (max-width:900px){ .controls{grid-template-columns:1fr 1fr} }
+    @media (max-width:520px){ .controls{grid-template-columns:1fr} }
+
+    input, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--text);
+      outline:none;
+      font-weight:650;
+    }
+    option{background:#0b1020}
+
+    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    @media (max-width:900px){ .cards{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:620px){ .cards{grid-template-columns:1fr} }
+
+    .collegeCard{
+      padding:16px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.10);
+      transition: transform .12s ease, border-color .12s ease;
+      cursor:pointer;
+    }
+    .collegeCard:hover{transform: translateY(-2px); border-color: rgba(122,166,255,.35)}
+
+    .row{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .name{font-weight:900; font-size:16px}
+    .tag{
+      font-size:12px; font-weight:850;
+      padding:6px 9px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .meta{margin-top:10px; color:var(--muted); font-size:13px; line-height:1.4}
+    .kpis{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .kpi{
+      padding:8px 10px;
+      border-radius:14px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .backRow{display:flex; gap:10px; align-items:center; margin-bottom:10px}
+    .muted{color:var(--muted)}
+    .twoCol{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    @media (max-width:900px){ .twoCol{grid-template-columns:1fr} }
+
+    .box{
+      padding:16px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .box h3{margin:0 0 8px; font-size:14px; letter-spacing:.2px}
+    .weights{display:grid; gap:8px}
+    .bar{
+      display:grid;
+      grid-template-columns: 160px 1fr 110px;
+      gap:10px;
+      align-items:center;
+      font-size:13px;
+      color:var(--muted);
+    }
+    @media (max-width:520px){ .bar{grid-template-columns: 120px 1fr 92px} }
+    .track{
+      height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .fill{
+      height:100%;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(68,255,182,.9), rgba(122,166,255,.85));
+    }
+    textarea{
+      width:100%;
+      min-height:180px;
+      padding:12px;
+      border-radius:14px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+      outline:none;
+      font-weight:650;
+      resize:vertical;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#/">
+        <div class="logo">🦉</div>
+        <div>Burrow</div>
+      </a>
+      <nav class="links">
+        <a class="pill" id="link-home" href="#/">Home</a>
+        <a class="pill" id="link-explore" href="#/explore">Explore</a>
+        <a class="pill" id="link-strategy" href="#/strategy">Strategy</a>
+        <a class="pill" id="link-essays" href="#/essays">Essays</a>
+        <a class="pill" id="link-transparency" href="#/transparency">Transparency</a>
+        <a class="pill" id="link-about" href="#/about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="app"></main>
+
+  <script>
+    // --- Tiny in-memory "database" for MVP. Replace later with Supabase/Firebase.
+    // NOTE: Labels below are CDS-style categories (not a guaranteed formula).
+    const COLLEGES = [
+      {
+        id: "unc-chapel-hill",
+        name: "UNC Chapel Hill",
+        system: "UNC System",
+        location: "Chapel Hill, NC",
+        vibe: "Reach-ish",
+        satMid50: "1350–1520",
+        actMid50: "30–34",
+        popularMajors: ["Biology", "Business", "Psychology", "Computer Science", "Political Science"],
+        hardestPrograms: ["Business (Kenan-Flagler)", "Computer Science", "Biology (pre-med track)"],
+        weights: {
+          "Course rigor": "Very Important",
+          "GPA": "Very Important",
+          "Essays": "Important",
+          "Extracurriculars": "Important",
+          "Recommendations": "Considered",
+          "Class rank": "Considered",
+          "Test scores": "Considered"
+        },
+        sources: [
+          { label: "Common Data Set (CDS)", note: "Add official UNC-CH CDS link later" },
+          { label: "Admissions website", note: "Add UNC-CH admissions criteria link later" }
+        ],
+        notes: "Public flagship. Strong academics + big opportunities. Expect competition for selective programs."
+      },
+      {
+        id: "unc-charlotte",
+        name: "UNC Charlotte",
+        system: "UNC System",
+        location: "Charlotte, NC",
+        vibe: "Target",
+        satMid50: "1100–1290",
+        actMid50: "22–28",
+        popularMajors: ["Computer Science", "Engineering", "Business", "Nursing", "Criminal Justice"],
+        hardestPrograms: ["Nursing", "Engineering (some tracks)"],
+        weights: {
+          "Course rigor": "Important",
+          "GPA": "Very Important",
+          "Essays": "Considered",
+          "Extracurriculars": "Considered",
+          "Recommendations": "Considered",
+          "Class rank": "Considered",
+          "Test scores": "Considered"
+        },
+        sources: [
+          { label: "Common Data Set (CDS)", note: "Add official UNC Charlotte CDS link later" },
+          { label: "Admissions website", note: "Add UNC Charlotte admissions criteria link later" }
+        ],
+        notes: "Big city energy. Strong for engineering/CS and internships around Charlotte."
+      },
+      {
+        id: "unc-greensboro",
+        name: "UNC Greensboro",
+        system: "UNC System",
+        location: "Greensboro, NC",
+        vibe: "Target/Safety",
+        satMid50: "1020–1210",
+        actMid50: "19–25",
+        popularMajors: ["Business", "Psychology", "Education", "Nursing", "Public Health"],
+        hardestPrograms: ["Nursing"],
+        weights: {
+          "Course rigor": "Important",
+          "GPA": "Very Important",
+          "Essays": "Considered",
+          "Extracurriculars": "Considered",
+          "Recommendations": "Considered",
+          "Class rank": "Considered",
+          "Test scores": "Considered"
+        },
+        sources: [
+          { label: "Common Data Set (CDS)", note: "Add official UNCG CDS link later" },
+          { label: "Admissions website", note: "Add UNCG admissions criteria link later" }
+        ],
+        notes: "Solid academics with supportive vibe. Good pathways into healthcare and education."
+      },
+      {
+        id: "unc-wilmington",
+        name: "UNC Wilmington",
+        system: "UNC System",
+        location: "Wilmington, NC",
+        vibe: "Target",
+        satMid50: "1120–1310",
+        actMid50: "22–28",
+        popularMajors: ["Business", "Marine Biology", "Psychology", "Communications", "Biology"],
+        hardestPrograms: ["Marine Biology", "Some health tracks"],
+        weights: {
+          "Course rigor": "Important",
+          "GPA": "Very Important",
+          "Essays": "Considered",
+          "Extracurriculars": "Considered",
+          "Recommendations": "Considered",
+          "Class rank": "Considered",
+          "Test scores": "Considered"
+        },
+        sources: [
+          { label: "Common Data Set (CDS)", note: "Add official UNCW CDS link later" },
+          { label: "Admissions website", note: "Add UNCW admissions criteria link later" }
+        ],
+        notes: "Coastal campus. Strong for business + sciences. Great if you want beach + brains."
+      }
+    ];
+
+    // CDS-style labels → internal scoring (used only to rank priorities)
+    const IMPORTANCE_SCORE = {
+      "Very Important": 90,
+      "Important": 70,
+      "Considered": 45,
+      "Not Considered": 10,
+    };
+    function weightToScore(label){
+      return IMPORTANCE_SCORE[label] ?? 45;
+    }
+
+    // --- Routing / nav
+    const app = document.getElementById("app");
+    const linkHome = document.getElementById("link-home");
+    const linkExplore = document.getElementById("link-explore");
+    const linkStrategy = document.getElementById("link-strategy");
+    const linkEssays = document.getElementById("link-essays");
+    const linkTransparency = document.getElementById("link-transparency");
+    const linkAbout = document.getElementById("link-about");
+
+    function setActive(path){
+      [linkHome, linkExplore, linkStrategy, linkEssays, linkTransparency, linkAbout].forEach(a => a.classList.remove("active"));
+      if(path.startsWith("#/strategy")) linkStrategy.classList.add("active");
+      else if(path.startsWith("#/explore")) linkExplore.classList.add("active");
+      else if(path.startsWith("#/essays")) linkEssays.classList.add("active");
+      else if(path.startsWith("#/transparency")) linkTransparency.classList.add("active");
+      else if(path.startsWith("#/about")) linkAbout.classList.add("active");
+      else linkHome.classList.add("active");
+    }
+
+    function render(){
+      const hash = location.hash || "#/";
+      setActive(hash);
+
+      if(hash.startsWith("#/explore")){
+        renderExplore();
+        return;
+      }
+      if(hash.startsWith("#/college/")){
+        const id = hash.split("#/college/")[1];
+        renderCollege(id);
+        return;
+      }
+      if(hash.startsWith("#/strategy")){
+        const id = hash.split("#/strategy/")[1] || "";
+        renderStrategy(id);
+        return;
+      }
+      if(hash.startsWith("#/essays")){
+        renderEssays();
+        return;
+      }
+      if(hash.startsWith("#/transparency")){
+        renderTransparency();
+        return;
+      }
+      if(hash.startsWith("#/about")){
+        renderAbout();
+        return;
+      }
+      renderHome();
+    }
+
+    // --- Views
+    function renderHome(){
+      app.innerHTML = `
+        <section class="hero">
+          <div class="card">
+            <div class="cardPad">
+              <h1>Find your fit. Build your plan.</h1>
+              <p class="sub">Burrow turns college research into an action plan: what each school values and exactly what you should focus on next.</p>
+              <div class="ctaRow">
+                <a class="btn" href="#/strategy">Build my plan</a>
+                <a class="btn2" href="#/explore">Explore UNC schools</a>
+              </div>
+              <div class="mini">MVP starts with UNC system schools → then we scale.</div>
+              <div class="mini">Disclaimer: Burrow provides guidance, not admissions predictions.</div>
+            </div>
+          </div>
+
+          <div class="card funBox">
+            <div class="mascot">
+              <div class="owl">🦉</div>
+              <div>
+                <div style="font-weight:900;">Your college strategist</div>
+                <div class="muted" style="font-size:13px;">Cute vibe. Serious decisions.</div>
+              </div>
+            </div>
+            <div class="badgeRow">
+              <div class="badge">School-specific priorities</div>
+              <div class="badge">Personalized checklist</div>
+              <div class="badge">Essay library (MVP)</div>
+              <div class="badge">Transparency built-in</div>
+            </div>
+            <div style="margin-top:14px; color:var(--muted); font-size:13px; line-height:1.5;">
+              Next upgrades: accounts, saved plans, cost calculator, moderation, and a real database for public essay sharing.
+            </div>
+          </div>
+        </section>
+
+        <div class="sectionTitle">Quick start</div>
+        <div class="grid">
+          <div class="card">
+            <div class="cardPad">
+              <div class="row">
+                <div style="font-weight:900;">Make a plan in 60 seconds</div>
+                <a class="pill active" href="#/strategy">Go →</a>
+              </div>
+              <p class="sub" style="margin:10px 0 0;">
+                Pick a school, enter real stats, and Burrow tells you what to do next.
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderExplore(){
+      app.innerHTML = `
+        <div class="sectionTitle">Explore colleges (UNC starter pack)</div>
+
+        <div class="card">
+          <div class="cardPad">
+            <div class="controls">
+              <input id="q" placeholder="Search (e.g., chapel, wilmington, nursing)" />
+              <select id="vibe">
+                <option value="">All vibes</option>
+                <option value="Reach-ish">Reach-ish</option>
+                <option value="Target">Target</option>
+                <option value="Target/Safety">Target/Safety</option>
+              </select>
+              <select id="sat">
+                <option value="">SAT filter</option>
+                <option value="1200">1200+</option>
+                <option value="1300">1300+</option>
+                <option value="1400">1400+</option>
+              </select>
+              <select id="act">
+                <option value="">ACT filter</option>
+                <option value="24">24+</option>
+                <option value="28">28+</option>
+                <option value="30">30+</option>
+              </select>
+            </div>
+
+            <div style="height:12px"></div>
+            <div id="cards" class="cards"></div>
+            <div class="mini">Note: SAT/ACT ranges shown here are placeholders for MVP unless you replace them with verified numbers.</div>
+          </div>
+        </div>
+      `;
+
+      const q = document.getElementById("q");
+      const vibe = document.getElementById("vibe");
+      const sat = document.getElementById("sat");
+      const act = document.getElementById("act");
+      const cards = document.getElementById("cards");
+
+      function satMin(col){
+        const m = col.satMid50.match(/^(\d+)/);
+        return m ? parseInt(m[1],10) : 0;
+      }
+      function actMin(col){
+        const m = col.actMid50.match(/^(\d+)/);
+        return m ? parseInt(m[1],10) : 0;
+      }
+
+      function draw(){
+        const term = (q.value || "").toLowerCase().trim();
+        const vibeVal = vibe.value;
+        const satVal = sat.value ? parseInt(sat.value,10) : null;
+        const actVal = act.value ? parseInt(act.value,10) : null;
+
+        const results = COLLEGES.filter(c => {
+          const hay = (c.name + " " + c.location + " " + c.popularMajors.join(" ")).toLowerCase();
+          if(term && !hay.includes(term)) return false;
+          if(vibeVal && c.vibe !== vibeVal) return false;
+          if(satVal && satMin(c) < satVal) return false;
+          if(actVal && actMin(c) < actVal) return false;
+          return true;
+        });
+
+        cards.innerHTML = results.map(c => `
+          <div class="collegeCard" onclick="location.hash='#/college/${c.id}'">
+            <div class="row">
+              <div class="name">${c.name}</div>
+              <div class="tag">${c.vibe}</div>
+            </div>
+            <div class="meta">${c.location}</div>
+            <div class="kpis">
+              <div class="kpi">SAT: ${c.satMid50}</div>
+              <div class="kpi">ACT: ${c.actMid50}</div>
+              <div class="kpi">${c.popularMajors[0]}</div>
+            </div>
+          </div>
+        `).join("");
+
+        if(results.length === 0){
+          cards.innerHTML = `<div class="muted">No matches. Try removing filters.</div>`;
+        }
+      }
+
+      [q, vibe, sat, act].forEach(el => el.addEventListener("input", draw));
+      [vibe, sat, act].forEach(el => el.addEventListener("change", draw));
+      draw();
+    }
+
+    function renderCollege(id){
+      const c = COLLEGES.find(x => x.id === id);
+      if(!c){
+        app.innerHTML = `<div class="muted">College not found. <a class="pill active" href="#/explore">Back to explore</a></div>`;
+        return;
+      }
+
+      const weights = Object.entries(c.weights)
+        .map(([k,label]) => ({ k, label, score: weightToScore(label) }))
+        .sort((a,b)=>b.score - a.score)
+        .map(({k,label,score}) => `
+          <div class="bar">
+            <div>${k}</div>
+            <div class="track"><div class="fill" style="width:${score}%"></div></div>
+            <div style="text-align:right; font-weight:900; color:var(--text); font-size:12px">${label}</div>
+          </div>
+        `).join("");
+
+      app.innerHTML = `
+        <div class="backRow">
+          <a class="btn2" href="#/explore">← Back</a>
+          <div class="muted">College profile</div>
+        </div>
+
+        <div class="card">
+          <div class="cardPad">
+            <div class="row" style="align-items:flex-start">
+              <div>
+                <div style="font-size:22px; font-weight:950;">${c.name}</div>
+                <div class="muted" style="margin-top:4px">${c.location} • ${c.system} • <span class="tag">${c.vibe}</span></div>
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn" onclick="location.hash='#/strategy/${c.id}'">Build my plan</button>
+                <button class="btn2" onclick="location.hash='#/essays'">Essay library</button>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div class="twoCol">
+              <div class="box">
+                <h3>Admissions snapshot</h3>
+                <div class="kpis">
+                  <div class="kpi">SAT (mid 50%): ${c.satMid50}</div>
+                  <div class="kpi">ACT (mid 50%): ${c.actMid50}</div>
+                </div>
+                <div style="margin-top:10px" class="muted">${c.notes}</div>
+                <div class="mini">Disclaimer: Burrow provides guidance, not admissions predictions.</div>
+              </div>
+
+              <div class="box">
+                <h3>Popular majors</h3>
+                <div class="kpis">
+                  ${c.popularMajors.map(m => `<div class="kpi">${m}</div>`).join("")}
+                </div>
+              </div>
+
+              <div class="box">
+                <h3>Admissions factors (CDS-style)</h3>
+                <div class="weights">${weights}</div>
+                <div class="mini">Labels are CDS-style categories. Not a guaranteed formula. See Transparency for details.</div>
+              </div>
+
+              <div class="box">
+                <h3>Hardest programs to get into</h3>
+                <div class="kpis">
+                  ${c.hardestPrograms.map(p => `<div class="kpi">${p}</div>`).join("")}
+                </div>
+                <div style="margin-top:10px">
+                  <button class="btn2" onclick="location.hash='#/essays'">See sample essays</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div class="box">
+              <h3>Sources (placeholders for now)</h3>
+              <div class="muted" style="line-height:1.6;">
+                ${c.sources && c.sources.length ? c.sources.map(s => `• <b>${s.label}</b>: ${s.note}`).join("<br>") : "Sources will appear here."}
+              </div>
+              <div class="mini">Next step: replace notes with actual links per school.</div>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function renderStrategy(optionalCollegeId){
+      const collegeOptions = COLLEGES.map(c => `<option value="${c.id}">${c.name}</option>`).join("");
+      const selected = COLLEGES.find(c => c.id === optionalCollegeId) || COLLEGES[0];
+
+      app.innerHTML = `
+        <div class="sectionTitle">Strategy (pick a school → get your game plan)</div>
+        <div class="card">
+          <div class="cardPad">
+            <div class="controls" style="grid-template-columns: 1.2fr .8fr .8fr .8fr;">
+              <select id="collegePick">${collegeOptions}</select>
+              <select id="testPolicy">
+                <option value="has">Submitting tests</option>
+                <option value="optional">Test-optional</option>
+              </select>
+              <button class="btn2" id="fillExample">Use example stats</button>
+              <button class="btn" id="makePlan">Make my plan</button>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div class="twoCol">
+              <div class="box">
+                <h3>Your profile (real numbers)</h3>
+                <div class="muted" style="margin-bottom:10px">
+                  Enter what you actually have. Burrow converts it into a strategy score.
+                </div>
+
+                ${numInput("gpaW","Weighted GPA (0–5.0)","4.2","step='0.01'")}
+                ${numInput("gpaUW","Unweighted GPA (0–4.0)","3.7","step='0.01'")}
+                ${numInput("rigor","AP/IB/Honors classes taken","6","step='1'")}
+                ${numInput("rankPct","Class rank percentile (e.g., 12 = top 12%)","20","step='1'")}
+
+                <div style="height:8px"></div>
+
+                ${numInput("sat","SAT score (400–1600)","1250","step='10'")}
+                ${numInput("act","ACT score (1–36)","27","step='1'")}
+
+                <div style="height:8px"></div>
+
+                ${numInput("ecsHrs","Leadership/EC hours per week","6","step='1'")}
+                ${numInput("impact","Impact score (0–10) — awards/leadership/results","5","step='1'")}
+
+                <div style="height:8px"></div>
+
+                ${numInput("essay","Essay rating (1–10)","6","step='1'")}
+                ${numInput("recs","Rec letters rating (1–10)","6","step='1'")}
+
+                <div class="mini">
+                  Tip: If you’re going test-optional, select it above — Burrow will downweight tests automatically.
+                </div>
+              </div>
+
+              <div class="box" id="planBox">
+                <h3>Your plan</h3>
+                <div class="muted">Pick a college and click <b>Make my plan</b>.</div>
+              </div>
+            </div>
+
+            <div class="mini">Disclaimer: Burrow provides guidance, not admissions predictions. Importance labels are CDS-style categories.</div>
+          </div>
+        </div>
+      `;
+
+      const collegePick = document.getElementById("collegePick");
+      const testPolicy = document.getElementById("testPolicy");
+      collegePick.value = selected.id;
+
+      function getCollege(){
+        return COLLEGES.find(c => c.id === collegePick.value);
+      }
+
+      document.getElementById("fillExample").addEventListener("click", () => {
+        setVal("gpaW", 4.3);
+        setVal("gpaUW", 3.75);
+        setVal("rigor", 7);
+        setVal("rankPct", 18);
+        setVal("sat", 1260);
+        setVal("act", 27);
+        setVal("ecsHrs", 7);
+        setVal("impact", 6);
+        setVal("essay", 6);
+        setVal("recs", 6);
+        testPolicy.value = "optional";
+      });
+
+      document.getElementById("makePlan").addEventListener("click", () => {
+        const c = getCollege();
+
+        const raw = {
+          gpaW: getVal("gpaW"),
+          gpaUW: getVal("gpaUW"),
+          rigor: getVal("rigor"),
+          rankPct: getVal("rankPct"),
+          sat: getVal("sat"),
+          act: getVal("act"),
+          ecsHrs: getVal("ecsHrs"),
+          impact: getVal("impact"),
+          essay: getVal("essay"),
+          recs: getVal("recs"),
+        };
+
+        // Convert to internal 0–100 strength scores (heuristics)
+        const student = {
+          "Course rigor": scoreRigor(raw.rigor),
+          "GPA": scoreGPA(raw.gpaUW, raw.gpaW),
+          "Essays": scoreTen(raw.essay),
+          "Extracurriculars": scoreEC(raw.ecsHrs, raw.impact),
+          "Recommendations": scoreTen(raw.recs),
+          "Class rank": scoreRank(raw.rankPct),
+          "Test scores": scoreTests(raw.sat, raw.act),
+        };
+
+        const labels = {...c.weights};
+        let testMultiplier = 1;
+        if(testPolicy.value === "optional") testMultiplier = 0.35;
+
+        const priorities = Object.entries(labels).map(([cat,label]) => {
+          let w = weightToScore(label);
+          if(cat === "Test scores") w = Math.round(w * testMultiplier);
+
+          const strength = student[cat] ?? 60;
+          const gap = Math.max(0, 100 - strength);
+          const urgency = w * gap;
+          return {cat, label, w, strength, gap, urgency};
+        }).sort((a,b)=>b.urgency - a.urgency);
+
+        const top = priorities.slice(0,3);
+        const checklist = top.map(t => checklistFor(t.cat)).flat().slice(0,10);
+
+        document.getElementById("planBox").innerHTML = `
+          <h3>${c.name}: what to focus on</h3>
+          <div class="muted" style="margin-bottom:10px">
+            Based on what this school values + where you’re weakest.
+          </div>
+
+          <div class="kpis">
+            ${top.map(t => `
+              <div class="kpi">
+                <div style="font-weight:900">${t.cat}</div>
+                <div class="muted" style="font-size:12px">Importance ${t.label} • Strength ${t.strength}/100</div>
+              </div>
+            `).join("")}
+          </div>
+
+          <div style="height:12px"></div>
+
+          <div class="box" style="background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.08);">
+            <h3>Do this next (checklist)</h3>
+            <ul style="margin:8px 0 0; padding-left:18px; color: var(--muted); line-height:1.6;">
+              ${checklist.map(x => `<li>${x}</li>`).join("")}
+            </ul>
+          </div>
+
+          <div style="height:10px"></div>
+          <div class="mini">
+            Disclaimer: This is guidance, not an admissions prediction. Categories are CDS-style; scoring is heuristic.
+          </div>
+        `;
+      });
+
+      // --- UI helpers
+      function numInput(id,label,placeholder,extra){
+        return `
+          <label class="muted" style="display:block; margin:10px 0 6px; font-size:13px; font-weight:800;">${label}</label>
+          <input type="number" id="${id}" placeholder="${placeholder}" ${extra} />
+        `;
+      }
+      function getVal(id){
+        const el = document.getElementById(id);
+        const v = parseFloat(el.value);
+        return Number.isFinite(v) ? v : NaN;
+      }
+      function setVal(id,val){
+        document.getElementById(id).value = String(val);
+      }
+
+      // --- Normalization (MVP heuristics — tune later)
+      function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+      function toScore(n, inMin, inMax){
+        if(!Number.isFinite(n)) return 60;
+        const t = (n - inMin) / (inMax - inMin);
+        return Math.round(clamp(t, 0, 1) * 100);
+      }
+
+      function scoreGPA(uw, w){
+        if(Number.isFinite(uw)) return toScore(uw, 2.5, 4.0);
+        if(Number.isFinite(w))  return toScore(w, 3.2, 5.0);
+        return 60;
+      }
+      function scoreRigor(apCount){
+        return toScore(apCount, 0, 12);
+      }
+      function scoreRank(rankPct){
+        if(!Number.isFinite(rankPct)) return 60;
+        const pct = clamp(rankPct, 1, 100);
+        return Math.round((1 - (pct - 1) / 99) * 100);
+      }
+      function scoreTests(sat, act){
+        const satScore = Number.isFinite(sat) ? toScore(sat, 900, 1550) : null;
+        const actScore = Number.isFinite(act) ? toScore(act, 18, 35) : null;
+        if(satScore === null && actScore === null) return 60;
+        if(satScore === null) return actScore;
+        if(actScore === null) return satScore;
+        return Math.max(satScore, actScore);
+      }
+      function scoreEC(hoursPerWeek, impact0to10){
+        const h = Number.isFinite(hoursPerWeek) ? toScore(hoursPerWeek, 0, 15) : 60;
+        const imp = Number.isFinite(impact0to10) ? toScore(impact0to10, 0, 10) : 60;
+        return Math.round(h * 0.45 + imp * 0.55);
+      }
+      function scoreTen(x){ return toScore(x, 1, 10); }
+
+      function checklistFor(cat){
+        switch(cat){
+          case "Essays":
+            return [
+              "Draft a ‘Why this school?’ paragraph (specific programs, culture, opportunities).",
+              "Write 3 story bullets: challenge, leadership, impact (numbers if possible).",
+              "Get 2 feedback rounds: one for clarity, one for voice."
+            ];
+          case "Extracurriculars":
+            return [
+              "Pick 1 spike: go deeper (leadership, awards, measurable impact).",
+              "Quantify impact: hours, dollars, people reached, outcomes.",
+              "Create a 6-week mini-project you can finish + report."
+            ];
+          case "Course rigor":
+            return [
+              "If possible, add/continue the toughest classes you can succeed in.",
+              "Explain rigor in additional info if your school limits advanced courses.",
+              "Show upward trend: strongest grades in hardest classes."
+            ];
+          case "GPA":
+            return [
+              "Target grade boosts in 1–2 classes with the biggest GPA impact.",
+              "Ask teachers what exactly moves you from B→A (rubric-based).",
+              "Build a weekly study plan around exams/projects, not ‘hours’."
+            ];
+          case "Recommendations":
+            return [
+              "Choose recommenders who’ve seen you lead or grow (not just ‘nice’).",
+              "Give them a brag sheet: impact, traits, anecdotes, resume.",
+              "Ask early + politely (6–8 weeks)."
+            ];
+          case "Class rank":
+            return [
+              "Maximize high-weight classes + avoid unnecessary GPA risks.",
+              "If rank is rough, lean into rigor + impact + essays to offset.",
+              "Use additional info for context (competitive school, grading)."
+            ];
+          case "Test scores":
+            return [
+              "Take 2 practice tests and target one weak section.",
+              "If test-optional, invest time in essays + impact instead.",
+              "If submitting, retake only with a clear plan + realistic gain."
+            ];
+          default:
+            return ["Strengthen your application in the top priority areas."];
+        }
+      }
+    }
+
+    function renderEssays(){
+      const STORAGE_KEY = "burrow_essays_v1";
+
+      app.innerHTML = `
+        <div class="sectionTitle">Sample Personal Essays</div>
+
+        <div class="card">
+          <div class="cardPad">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:950; font-size:18px;">Share an essay (MVP)</div>
+                <div class="muted" style="margin-top:6px; line-height:1.5;">
+                  Upload/paste an essay to help others. For now, essays save <b>only on your device</b> (local storage).
+                  Later we’ll connect a database so everyone can see submissions.
+                </div>
+              </div>
+              <a class="btn2" href="#/transparency">How this works</a>
+            </div>
+
+            <div style="height:14px"></div>
+
+            <div class="twoCol">
+              <div class="box">
+                <h3>Submit an essay</h3>
+
+                <label class="muted" style="display:block; margin:10px 0 6px; font-size:13px; font-weight:800;">Title</label>
+                <input id="essayTitle" placeholder="e.g., The Bus Stop" />
+
+                <label class="muted" style="display:block; margin:10px 0 6px; font-size:13px; font-weight:800;">College (optional)</label>
+                <select id="essayCollege">
+                  <option value="">Any / General</option>
+                  ${COLLEGES.map(c => `<option value="${c.name}">${c.name}</option>`).join("")}
+                </select>
+
+                <label class="muted" style="display:block; margin:10px 0 6px; font-size:13px; font-weight:800;">Prompt type</label>
+                <select id="essayPrompt">
+                  <option value="Common App Personal Statement">Common App Personal Statement</option>
+                  <option value="Why this school">Why this school</option>
+                  <option value="Community / identity">Community / identity</option>
+                  <option value="Challenge / growth">Challenge / growth</option>
+                  <option value="Other">Other</option>
+                </select>
+
+                <label class="muted" style="display:block; margin:10px 0 6px; font-size:13px; font-weight:800;">Essay text</label>
+                <textarea id="essayBody" placeholder="Paste the essay here…"></textarea>
+
+                <label class="muted" style="display:block; margin:10px 0 6px; font-size:13px; font-weight:800;">Tags (comma-separated)</label>
+                <input id="essayTags" placeholder="e.g., leadership, family, humor" />
+
+                <div style="height:10px"></div>
+                <button class="btn" id="saveEssayBtn">Submit essay</button>
+                <div class="mini">Please don’t include real names, phone numbers, or addresses.</div>
+              </div>
+
+              <div class="box">
+                <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+                  <h3 style="margin:0;">Essay library (local)</h3>
+                  <button class="btn2" id="clearEssaysBtn">Clear all</button>
+                </div>
+
+                <div style="height:10px"></div>
+
+                <input id="essaySearch" placeholder="Search essays by title, prompt, tags…" />
+                <div style="height:10px"></div>
+
+                <div id="essayList" class="grid"></div>
+                <div class="mini">Next upgrade: accounts + moderation + public sharing via database.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+
+      const titleEl = document.getElementById("essayTitle");
+      const collegeEl = document.getElementById("essayCollege");
+      const promptEl = document.getElementById("essayPrompt");
+      const bodyEl = document.getElementById("essayBody");
+      const tagsEl = document.getElementById("essayTags");
+      const saveBtn = document.getElementById("saveEssayBtn");
+      const clearBtn = document.getElementById("clearEssaysBtn");
+      const searchEl = document.getElementById("essaySearch");
+      const listEl = document.getElementById("essayList");
+
+      function load(){
+        try{
+          const raw = localStorage.getItem(STORAGE_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        }catch{
+          return [];
+        }
+      }
+      function save(all){
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+      }
+
+      function escapeHtml(s){
+        return String(s)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      function renderList(){
+        const essays = load();
+        const term = (searchEl.value || "").toLowerCase().trim();
+
+        const filtered = essays.filter(e => {
+          if(!term) return true;
+          const hay = `${e.title} ${e.college} ${e.prompt} ${e.tags.join(" ")}`.toLowerCase();
+          return hay.includes(term);
+        });
+
+        if(filtered.length === 0){
+          listEl.innerHTML = `<div class="muted">No essays yet. Submit one on the left.</div>`;
+          return;
+        }
+
+        listEl.innerHTML = filtered
+          .sort((a,b)=>b.createdAt - a.createdAt)
+          .map(e => {
+            const preview = e.body.length > 220 ? e.body.slice(0,220) + "…" : e.body;
+            return `
+              <div class="box">
+                <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start;">
+                  <div>
+                    <div style="font-weight:950;">${escapeHtml(e.title)}</div>
+                    <div class="muted" style="font-size:12px; margin-top:4px;">
+                      ${escapeHtml(e.prompt)}${e.college ? " • " + escapeHtml(e.college) : ""}
+                    </div>
+                  </div>
+                  <button class="btn2" data-del="${e.id}">Delete</button>
+                </div>
+
+                <div style="margin-top:10px; color:var(--muted); line-height:1.6; white-space:pre-wrap;">${escapeHtml(preview)}</div>
+
+                <div class="kpis" style="margin-top:10px;">
+                  ${e.tags.slice(0,6).map(t => `<div class="kpi">${escapeHtml(t)}</div>`).join("")}
+                </div>
+
+                <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                  <button class="btn2" data-open="${e.id}">Read full</button>
+                  <button class="btn2" data-copy="${e.id}">Copy text</button>
+                </div>
+              </div>
+            `;
+          }).join("");
+
+        listEl.querySelectorAll("[data-del]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-del");
+            const next = load().filter(x => x.id !== id);
+            save(next);
+            renderList();
+          });
+        });
+
+        listEl.querySelectorAll("[data-open]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-open");
+            const e = load().find(x => x.id === id);
+            if(!e) return;
+            alert(`${e.title}\n\n${e.body}`);
+          });
+        });
+
+        listEl.querySelectorAll("[data-copy]").forEach(btn => {
+          btn.addEventListener("click", async () => {
+            const id = btn.getAttribute("data-copy");
+            const e = load().find(x => x.id === id);
+            if(!e) return;
+            try{
+              await navigator.clipboard.writeText(e.body);
+              btn.textContent = "Copied!";
+              setTimeout(()=>btn.textContent="Copy text", 900);
+            }catch{
+              alert("Copy failed (browser permission).");
+            }
+          });
+        });
+      }
+
+      saveBtn.addEventListener("click", () => {
+        const title = (titleEl.value || "").trim();
+        const body = (bodyEl.value || "").trim();
+        const prompt = promptEl.value;
+        const college = collegeEl.value;
+        const tags = (tagsEl.value || "")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+        if(!title || !body){
+          alert("Please add a title and essay text.");
+          return;
+        }
+
+        const essays = load();
+        essays.push({
+          id: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()),
+          title,
+          body,
+          prompt,
+          college,
+          tags,
+          createdAt: Date.now()
+        });
+        save(essays);
+
+        titleEl.value = "";
+        bodyEl.value = "";
+        tagsEl.value = "";
+        collegeEl.value = "";
+        promptEl.value = "Common App Personal Statement";
+
+        renderList();
+        alert("Saved locally on this device! (Later we’ll make this public with a database.)");
+      });
+
+      clearBtn.addEventListener("click", () => {
+        if(confirm("Clear all locally saved essays on this device?")){
+          localStorage.removeItem(STORAGE_KEY);
+          renderList();
+        }
+      });
+
+      searchEl.addEventListener("input", renderList);
+
+      renderList();
+    }
+
+    function renderTransparency(){
+      app.innerHTML = `
+        <div class="sectionTitle">Transparency</div>
+        <div class="card">
+          <div class="cardPad">
+            <div style="font-weight:950; font-size:18px;">What Burrow is (and isn’t)</div>
+            <p class="sub">
+              Burrow is a strategy tool. It helps you prioritize your effort based on publicly available admissions criteria
+              (Common Data Set-style factor labels) and practical application heuristics. It does <b>not</b> predict admissions outcomes.
+            </p>
+
+            <div class="twoCol">
+              <div class="box">
+                <h3>Data sources</h3>
+                <div class="muted" style="line-height:1.6">
+                  • Common Data Set (CDS) factor categories (Very Important / Important / Considered / Not Considered)<br>
+                  • School admissions websites (requirements + guidance)<br>
+                  • General best practices (essay, ECs, recommendations)
+                </div>
+              </div>
+
+              <div class="box">
+                <h3>How the “plan” works</h3>
+                <div class="muted" style="line-height:1.6">
+                  Burrow combines:<br>
+                  • <b>Importance</b> (CDS-style label → internal score)<br>
+                  • <b>Your strength</b> (your inputs converted to a 0–100 scale)<br>
+                  Then ranks the biggest “gaps” to produce next steps.
+                </div>
+              </div>
+
+              <div class="box">
+                <h3>What’s placeholder right now</h3>
+                <div class="muted" style="line-height:1.6">
+                  • Some school factor labels until you attach the exact CDS for each college<br>
+                  • Program competitiveness notes (we’ll source or label as anecdotal)<br>
+                  • Any SAT/ACT ranges you haven’t verified yet
+                </div>
+              </div>
+
+              <div class="box">
+                <h3>Promise</h3>
+                <div class="muted" style="line-height:1.6">
+                  We’ll show sources per school as we add them. If something is an estimate, it will be labeled as such.
+                </div>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div class="mini">Want this to be fully “real”? Next step is attaching official CDS links + verified SAT/ACT ranges per school.</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAbout(){
+      app.innerHTML = `
+        <div class="sectionTitle">About Burrow</div>
+        <div class="card">
+          <div class="cardPad">
+            <div style="font-weight:950; font-size:18px;">What Burrow is building</div>
+            <p class="sub">
+              A playful college strategist: pick a school and Burrow tells you what matters most and what you should do next.
+              Starting with UNC schools, then scaling.
+            </p>
+            <div class="twoCol">
+              <div class="box">
+                <h3>Phase 1</h3>
+                <div class="muted">UNC starter database • explore • profiles • strategy checklist • essay library</div>
+              </div>
+              <div class="box">
+                <h3>Phase 2</h3>
+                <div class="muted">Accounts • saved plans • comparisons • timelines • moderation</div>
+              </div>
+              <div class="box">
+                <h3>Phase 3</h3>
+                <div class="muted">Cost calculator • essay bank • admin dashboard • scale nationally</div>
+              </div>
+              <div class="box">
+                <h3>Next step</h3>
+                <div class="muted">Connect a real database (Supabase/Firebase) so essays + schools can be public and editable.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.addEventListener("hashchange", render);
+    render();
+  </script>
+</body>
+</html>
